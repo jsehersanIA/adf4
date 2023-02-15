@@ -16,14 +16,19 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "DelimitedInput",
-						"type": "DatasetReference"
+						"referenceName": "DelimitedTextGenerico",
+						"type": "DatasetReference",
+						"parameters": {
+							"container": "input"
+						}
 					},
 					"fieldList": [
-						"itemName"
+						"childItems"
 					],
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
+						"modifiedDatetimeStart": "2023-02-15T00:00:00.000Z",
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
