@@ -35,25 +35,6 @@
 						"type": "DelimitedTextReadSettings"
 					}
 				}
-			},
-			{
-				"name": "Filter1",
-				"type": "Filter",
-				"dependsOn": [],
-				"userProperties": []
-			},
-			{
-				"name": "Set variable1",
-				"type": "SetVariable",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "test",
-					"value": {
-						"value": "@utcnow('yyyyMMdd')",
-						"type": "Expression"
-					}
-				}
 			}
 		],
 		"variables": {
