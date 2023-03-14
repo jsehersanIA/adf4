@@ -54,7 +54,10 @@
 						"referenceName": "DelimitedTextGenerico",
 						"type": "DatasetReference",
 						"parameters": {
-							"container": "input"
+							"container": {
+								"value": "@concat('input/',formatDateTime(utcNow(), 'yyyyMMdd'))",
+								"type": "Expression"
+							}
 						}
 					}
 				],
