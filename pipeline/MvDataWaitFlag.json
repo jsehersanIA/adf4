@@ -37,8 +37,8 @@
 				}
 			},
 			{
-				"name": "Set variable1",
-				"type": "SetVariable",
+				"name": "Filter1",
+				"type": "Filter",
 				"dependsOn": [
 					{
 						"activity": "Get Metadata1",
@@ -49,8 +49,14 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "pipelineReturnValue",
-					"setSystemVariable": true
+					"items": {
+						"value": "@activity('Get Metadata1').output.childItems",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@equals(concat(formatDateTime(utcNow(), 'yyyyMMdd'),'.flg'),item().name )",
+						"type": "Expression"
+					}
 				}
 			}
 		],

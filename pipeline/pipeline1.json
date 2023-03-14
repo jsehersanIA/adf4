@@ -1,0 +1,26 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "fecha",
+					"value": {
+						"value": "@concat(formatDateTime(utcNow(), 'yyyyMMdd'), '.flg')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"fecha": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
