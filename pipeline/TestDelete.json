@@ -10,7 +10,7 @@
 				"typeProperties": {
 					"variableName": "test",
 					"value": {
-						"value": "@utcnow('yyyyMMdd')",
+						"value": "@addseconds(utcnow(),100)",
 						"type": "Expression"
 					}
 				}

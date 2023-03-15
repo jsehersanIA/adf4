@@ -1,0 +1,27 @@
+{
+	"name": "untilPipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "horaInicio",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pipelineReturnValue",
+					"value": [
+						{
+							"key": "horaInicio",
+							"value": {
+								"type": "Object",
+								"content": "utcNow()"
+							}
+						}
+					],
+					"setSystemVariable": true
+				}
+			}
+		],
+		"annotations": []
+	}
+}
