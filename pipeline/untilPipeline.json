@@ -8,20 +8,57 @@
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "pipelineReturnValue",
-					"value": [
+					"variableName": "horaInicio",
+					"value": {
+						"value": "@utcNow()",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Until1",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "horaInicio",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@greaterOrEquals(utcnow(),addMinutes(variables('horaInicio'),2))",
+						"type": "Expression"
+					},
+					"activities": [
 						{
-							"key": "horaInicio",
-							"value": {
-								"type": "Object",
-								"content": "utcNow()"
+							"name": "Execute Pipeline1",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "MvDataWaitFlag",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
 							}
 						}
 					],
-					"setSystemVariable": true
+					"timeout": "0.12:00:00"
 				}
 			}
 		],
+		"variables": {
+			"test": {
+				"type": "String"
+			},
+			"horaInicio": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
