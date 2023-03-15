@@ -3,24 +3,11 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "horaInicio",
-				"type": "SetVariable",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "Opciones",
-					"value": {
-						"value": "@array(utcNow())",
-						"type": "Expression"
-					}
-				}
-			},
-			{
 				"name": "Until1",
 				"type": "Until",
 				"dependsOn": [
 					{
-						"activity": "horaInicio",
+						"activity": "Set variable1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -29,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@greaterOrEquals(utcnow(),addMinutes(variables('Opciones')[0],2))",
+						"value": "@greaterOrEquals(utcnow(),addMinutes(variables('opciones')[0],2))",
 						"type": "Expression"
 					},
 					"activities": [
@@ -49,19 +36,23 @@
 					],
 					"timeout": "0.12:00:00"
 				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "opciones",
+					"value": {
+						"value": "@array(utcNow())",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"variables": {
-			"test": {
-				"type": "String"
-			},
-			"horaInicio": {
-				"type": "String"
-			},
-			"Opciones": {
-				"type": "Array"
-			},
-			"opcs": {
+			"opciones": {
 				"type": "Array"
 			}
 		},
