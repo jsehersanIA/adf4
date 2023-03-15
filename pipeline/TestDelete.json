@@ -1,24 +1,15 @@
 {
 	"name": "TestDelete",
 	"properties": {
-		"activities": [
-			{
-				"name": "Set variable1",
-				"type": "SetVariable",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "test",
-					"value": {
-						"value": "@addseconds(utcnow(),100)",
-						"type": "Expression"
-					}
-				}
-			}
-		],
 		"variables": {
 			"test": {
 				"type": "String"
+			},
+			"opcs": {
+				"type": "Array"
+			},
+			"Opciones": {
+				"type": "Array"
 			}
 		},
 		"annotations": []
