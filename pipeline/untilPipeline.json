@@ -43,11 +43,21 @@
 						false
 					]
 				}
+			},
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
+				"dependsOn": [],
+				"userProperties": []
 			}
 		],
 		"variables": {
 			"opciones": {
-				"type": "Array"
+				"type": "Array",
+				"defaultValue": [
+					false,
+					false
+				]
 			}
 		},
 		"annotations": []
