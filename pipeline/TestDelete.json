@@ -1,13 +1,22 @@
 {
 	"name": "TestDelete",
 	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Opciones",
+					"value": [
+						true,
+						false
+					]
+				}
+			}
+		],
 		"variables": {
-			"test": {
-				"type": "String"
-			},
-			"opcs": {
-				"type": "Array"
-			},
 			"Opciones": {
 				"type": "Array"
 			}
