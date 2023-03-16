@@ -3,16 +3,48 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Until1",
-				"type": "Until",
+				"name": "CONFIGURACION",
+				"description": "El primer lugar es la ejecucion de azcopy y el otro del mysql",
+				"type": "SetVariable",
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
+					"variableName": "opciones",
+					"value": [
+						"true",
+						"false"
+					]
+				}
+			},
+			{
+				"name": "AZCOPY",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "CONFIGURACION",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
 					"expression": {
-						"value": "@greaterOrEquals(utcnow(),addMinutes(variables('opciones')[0],2))",
+						"value": "@equals(variables('opciones')[0],'true')",
 						"type": "Expression"
 					},
-					"activities": [
+					"ifFalseActivities": [
+						{
+							"name": "Wait1",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						}
+					],
+					"ifTrueActivities": [
 						{
 							"name": "Execute Pipeline1",
 							"type": "ExecutePipeline",
@@ -26,35 +58,42 @@
 								"waitOnCompletion": true
 							}
 						}
-					],
-					"timeout": "0.12:00:00"
-				}
-			},
-			{
-				"name": "CONFIGURACION",
-				"description": "El primer lugar es la ejecucion de azcopy y el otro del mysql",
-				"type": "SetVariable",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "opciones",
-					"value": [
-						true,
-						false
 					]
 				}
 			},
 			{
-				"name": "If Condition1",
+				"name": "MYSQL",
 				"type": "IfCondition",
-				"dependsOn": [],
-				"userProperties": []
-			},
-			{
-				"name": "If Condition2",
-				"type": "IfCondition",
-				"dependsOn": [],
-				"userProperties": []
+				"dependsOn": [
+					{
+						"activity": "CONFIGURACION",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('opciones')[1],'true')",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "Execute Pipeline2",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "MYSQL",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						}
+					]
+				}
 			}
 		],
 		"variables": {
@@ -64,6 +103,9 @@
 					false,
 					false
 				]
+			},
+			"horaInicio": {
+				"type": "String"
 			}
 		},
 		"annotations": []
