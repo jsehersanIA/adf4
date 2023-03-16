@@ -8,6 +8,10 @@
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
+					"expression": {
+						"value": "@greaterOrEquals(utcnow(),addMinutes(utcnow(),2))",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Get Metadata1_copy1",

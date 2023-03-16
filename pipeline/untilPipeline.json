@@ -49,6 +49,12 @@
 				"type": "IfCondition",
 				"dependsOn": [],
 				"userProperties": []
+			},
+			{
+				"name": "If Condition2",
+				"type": "IfCondition",
+				"dependsOn": [],
+				"userProperties": []
 			}
 		],
 		"variables": {
