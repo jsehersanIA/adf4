@@ -5,11 +5,18 @@
 			{
 				"name": "Until1",
 				"type": "Until",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "ESTABLECER HORA INICIO",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@greaterOrEquals(utcnow(),addMinutes(utcnow(),2))",
+						"value": "@greaterOrEquals(utcnow(),addMinutes(variables('horaInicio'),1))",
 						"type": "Expression"
 					},
 					"activities": [
@@ -61,7 +68,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"items": {
-									"value": "@activity('Get Metadata1').output.childItems",
+									"value": "@activity('Get Metadata1_copy1').output.childItems",
 									"type": "Expression"
 								},
 								"condition": {
@@ -84,7 +91,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@greaterOrEquals(activity('Filter1').output.FilteredItemsCount,1)",
+									"value": "@greaterOrEquals(activity('Filter1_copy1').output.FilteredItemsCount,1)",
 									"type": "Expression"
 								},
 								"ifFalseActivities": [
@@ -118,8 +125,23 @@
 					],
 					"timeout": "0.12:00:00"
 				}
+			},
+			{
+				"name": "ESTABLECER HORA INICIO",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "horaInicio",
+					"value": "@utcNow()"
+				}
 			}
 		],
+		"variables": {
+			"horaInicio": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
